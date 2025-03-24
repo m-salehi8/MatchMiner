@@ -27,6 +27,9 @@ class LeagueLinks(models.Model):
     end_year = models.PositiveIntegerField()
     source = models.ForeignKey(Source, on_delete=models.SET_NULL, null=True, blank=True, related_name="leagues" )
     url = models.URLField(null=True, blank=True)
+    match_count = models.PositiveIntegerField(null=True, blank=True)
+    complete_count = models.PositiveIntegerField(null=True, blank=True)
+    extra = models.JSONField(null=True, blank=True)
     def __str__(self):
         return self.name
 

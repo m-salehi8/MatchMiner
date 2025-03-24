@@ -47,6 +47,7 @@ PROJECT_APP = [
     "source",
     "match",
     "crawler",
+    "content",
 ]
 INSTALLED_APPS =UNFOLD_APPS+  [
     'django.contrib.admin',

@@ -16,6 +16,29 @@ class MatchCrawl(models.Model):
     has_time = models.BooleanField(default=False)
 
 
+class CleanData(models.Model):
+    match = models.ForeignKey(MatchCrawl, on_delete=models.CASCADE, related_name="clean_data")
+    match_pk = models.CharField(max_length=110, null=True, blank=True)
+    title = models.CharField(max_length=1000, null=True, blank=True)
+    year = models.PositiveSmallIntegerField(null=True, blank=True)
+    league_name = models.CharField(max_length=500, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    statistics = models.JSONField(null=True, blank=True)
+    league = models.JSONField(null=True, blank=True)
+    related_data = models.JSONField(null=True, blank=True)
+    stadium = models.JSONField(null=True, blank=True)
+    referee = models.JSONField(null=True, blank=True)
+    result = models.JSONField(null=True, blank=True)
+    home_team = models.JSONField(null=True, blank=True)
+    away_team = models.JSONField(null=True, blank=True)
+    club = models.JSONField(null=True, blank=True)
+    cards = models.JSONField(null=True, blank=True)
+    goals = models.JSONField(null=True, blank=True)
+    substitutions = models.JSONField(null=True, blank=True)
+    match_date = models.JSONField(null=True, blank=True)
+
+
 
 class IndexTab(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)

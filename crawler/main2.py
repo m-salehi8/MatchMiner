@@ -172,20 +172,19 @@ def process_chunk(chunk, chunk_index):
 
 def run():
 #    matches = MatchCrawl.objects.filter(match__session__league__name='UEFA Conference League')  #all()[82800:83000]
-#    matches = MatchCrawl.objects.filter(match__session__league__name='LaLiga')[0:5000]
+#    matches =  MatchCrawl.objects.filter(match__session__league__name='LaLiga')[5_000:10_000]
+
+
     crawl_data = MatchCrawl.objects.filter(
-       has_index=False, has_line=False, has_stik=False, has_club=False, has_time=False,
-     )
-
-    print("*****************************************************")
-    print(crawl_data.count())
-    print("*********************************************")
-    matches = crawl_data[0:10000]
-
-
-#    chunked_matches = chunk_queryset(matches)
+        has_index=False, has_line=False, has_stik=False, has_club=False, has_time=False,
+    )
+    matches = crawl_data[10001:20000]
+    
+    
     chunked_matches = chunk_queryset(matches, num_chunks=12)
 
+#    chunked_matches = chunk_queryset(matches)
+#
     threads = []
     for i, chunk in enumerate(chunked_matches):
         thread = threading.Thread(target=process_chunk, args=(chunk, i))
@@ -203,10 +202,8 @@ run()
 
 #end = time.time() - start_time
 #print("---  seconds ---     ", end)
-#get_matches("LaLiga2")
-#get_matches("Serie B")
-#get_matches("UEFA Champions League Qualifying")
-#get_matches("UEFA Europa League Qualifying")
+#get_matches("Netherland Eredivisie")
+#get_matches("UEFA Europa League")
 #get_matches("UEFA Champions League")
 #get_matches("Bundesliga")
 

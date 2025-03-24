@@ -1,6 +1,14 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
-from crawler.models import MatchCrawl, IndexTab, LineUpsTab, StatisticsTab, ClubTab, TimeLineTab
+from crawler.models import MatchCrawl, IndexTab, LineUpsTab, StatisticsTab, ClubTab, TimeLineTab, CleanData
+
+
+@admin.register(CleanData)
+class CleenAdmin(ModelAdmin):
+    list_display = ('title', 'year', 'league_name')
+    list_filter=  ('league_name',)
+    raw_id_fields = ("match",)
+
 
 @admin.register(MatchCrawl)
 class MatchCrawlAdmin(ModelAdmin):
